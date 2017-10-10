@@ -1,0 +1,26 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[a4paper,oneside,article,12pt]{memoir}
+\usepackage{lmelahnDefaultFonts}
+\usepackage{color}
+\renewcommand{\thesection}{\arabic{section}}
+\newcommand{\texorpdfstring}{}
+
+$if(title)$
+	\title{$title$}
+$endif$
+
+$if(date)$
+	\date{$date$}
+$endif$
+
+$if(subtitle)$
+	\author{$subtitle$}
+$endif$
+
+\begin{document}
+
+	\maketitle
+	$body$
+
+\end{document}

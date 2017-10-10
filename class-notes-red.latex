@@ -1,0 +1,36 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[article,12pt,a4paper,oneside]{memoir}
+
+\usepackage{color}
+
+\usepackage[top=1in,bottom=1in,right=1.5in,left=1.5in]{geometry}
+
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{lmelahnDefaultFonts}
+\usepackage{longtable,booktabs}
+
+$if(author)$
+\author{$author$}
+$endif$
+
+$if(date)$
+\date{$date$}
+$endif$
+
+$if(title)$
+\title{$title$}
+$endif$
+
+
+\begin{document}
+
+	\color{red}
+	
+	$if(title)$
+	\maketitle
+	$endif$
+		
+	$body$
+\end{document}

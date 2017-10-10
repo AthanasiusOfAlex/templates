@@ -1,0 +1,10 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[a4paper,oneside,article,12pt]{memoir}
+\usepackage{lmelahnDefaultFonts}
+\usepackage{color}
+\renewcommand{\thesection}{\arabic{section}}
+\newcommand{\texorpdfstring}{}
+\begin{document}
+	$body$
+\end{document}

@@ -1,0 +1,58 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[article]{aprathesis}
+
+
+$if(university)$
+\university{$university$}
+$endif$
+
+$if(school)$
+\school{$school$}
+$endif$
+
+$if(professor)$
+\professor{$professor$}
+$endif$
+
+$if(author)$
+\author{$author$}
+$endif$
+
+$if(studentid)$
+\studentid{$studentid$}
+$endif$
+
+$if(coursenumber)$
+\coursenumber{$coursenumber$}
+$endif$
+
+$if(coursename)$
+\coursename{$coursename$}
+$endif$
+
+$if(location)$
+\location{$location$}
+$endif$
+
+$if(date)$
+\date{$date$}
+$endif$
+
+$if(title)$
+\title{$title$}
+$endif$
+
+$if(subtitle)$
+\subtitle{$title$}
+$endif$
+
+\begin{document}
+	$if(title)$
+	\maketitle
+	$endif$
+	
+	\SingleSpacing
+	
+	$body$
+\end{document}
