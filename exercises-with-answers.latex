@@ -11,6 +11,10 @@
 
 \newcommand*{\hideText}[1]{\emph{#1}}
 
+$if(mathfont)$
+\setmathfont{$mathfont$}
+$endif$
+
 $if(subtitle)$
 \author{$subtitle$}
 $endif$
