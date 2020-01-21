@@ -1,15 +1,28 @@
 % !TEX TS-program = xelatex
 % !TEX encoding = UTF-8 Unicode
-\documentclass[article,12pt,a4paper,oneside]{memoir}
 
+$if(fontsize)$
+\documentclass[article,$fontsize$,a4paper,oneside]{memoir}
+$else$
+\documentclass[article,12pt,a4paper,oneside]{memoir}
+$endif$
+
+$if(geometry)$
+\usepackage[$geometry$]{geometry}
+$else$
 \usepackage[top=1in,bottom=1in,right=1in,left=1in]{geometry}
+$endif$
 
 \usepackage{hyperref}
 \usepackage{amsmath}
-\usepackage{lmelahnDefaultFontsCMMath}
+\usepackage{lmelahnDefaultFonts}
 \usepackage{longtable,booktabs}
+\usepackage{multicol}
+\usepackage[xetex]{color}
+\usepackage[xetex]{graphicx}
 
-\newcommand*{\hideText}[1]{\emph{#1}}
+\newcommand{\hideText}[1]{{\color{red}\itshape{}#1}}
+\newcommand{\hideRawText}[1]{#1}
 
 $if(mathfont)$
 \setmathfont{$mathfont$}
