@@ -26,32 +26,65 @@ $endif$
 \providebool{useEnglish}
 \providebool{useItalian}
 \providebool{useNone}
-\boolfalse{useItalian}
-\boolfalse{useEnglish}
-\boolfalse{useNone}
 
+\makeatletter
+\newcommand{\@clearLanguage}
+  {
+    \boolfalse{useItalian}
+    \boolfalse{useEnglish}
+    \boolfalse{useNone}
+  }
+ 
 \newcommand{\setLanguage}[1]
   {	
     \ifstrequal{#1}{English}
-	{
-	  \booltrue{useEnglish}
-	}{}
+	  {
+	    \@clearLanguage
+        \booltrue{useEnglish}
+	  }{}
 	
     \ifstrequal{#1}{Italian}
-	{
-	  \booltrue{useItalian}
-	}{}	
+	  {
+	    \@clearLanguage
+        \booltrue{useItalian}
+	  }{}	
 	
     \ifstrequal{#1}{None}
-	{
-	  \booltrue{useNone}
-	}{}	
-	
+	  {
+	    \@clearLanguage
+        \booltrue{useNone}
+	  }{}	
   }
- 
+\makeatother
 
-\newcommand{\hideText}[1]{}
-\newcommand{\hideRawText}[1]{}
+\providebool{showAnswers}
+$if(showAnswers)$
+  \ifstrequal{ $showAnswers$ }{ yes }
+    {
+      \booltrue{showAnswers}
+    }{
+      \ifstrequal{ $showAnswers$ }{ Yes }
+        {
+          \booltrue{showAnswers}
+	    }
+        {
+          \boolfalse{showAnswers}
+        }
+    }
+$else$
+  \boolfalse{showAnswers}
+$endif$
+
+\NewDocumentCommand{\hideText}{ +m }
+  {%
+    \ifbool{showAnswers}{{\color{red}\itshape{}#1}}{}
+  }
+
+\NewDocumentCommand{\hideRawText}{ +m }
+  {%
+    \ifbool{showAnswers}{#1}{}
+  }
+
 \NewDocumentCommand{\dualText}{ m m }
   {%
     \ifbool{useItalian}{#1}{}\ifbool{useEnglish}{#2}{}%
@@ -146,7 +179,7 @@ $endif$
 	  $if(titleItalian)$
 	  \maketitle
 	  $endif$
-	}{}
+	}{}	
 
 	$body$
 \end{document}
