@@ -22,6 +22,7 @@ $endif$
 \usepackage{multicol}
 \usepackage[xetex]{color}
 \usepackage[xetex]{graphicx}
+\usepackage{polyglossia}
 
 \providebool{useEnglish}
 \providebool{useItalian}
@@ -36,24 +37,24 @@ $endif$
   }
  
 \newcommand{\setLanguage}[1]
-  {	
+  { 
     \ifstrequal{#1}{English}
-	  {
-	    \@clearLanguage
+      {
+        \@clearLanguage
         \booltrue{useEnglish}
-	  }{}
-	
+      }{}
+    
     \ifstrequal{#1}{Italian}
-	  {
-	    \@clearLanguage
+      {
+        \@clearLanguage
         \booltrue{useItalian}
-	  }{}	
-	
+      }{}   
+    
     \ifstrequal{#1}{None}
-	  {
-	    \@clearLanguage
+      {
+        \@clearLanguage
         \booltrue{useNone}
-	  }{}	
+      }{}   
   }
 \makeatother
 
@@ -66,7 +67,7 @@ $if(showAnswers)$
       \ifstrequal{ $showAnswers$ }{ Yes }
         {
           \booltrue{showAnswers}
-	    }
+        }
         {
           \boolfalse{showAnswers}
         }
@@ -85,9 +86,20 @@ $endif$
     \ifbool{showAnswers}{#1}{}
   }
 
-\NewDocumentCommand{\dualText}{ m m }
+\NewDocumentCommand{\dualText}{ +m +m }
   {%
     \ifbool{useItalian}{#1}{}\ifbool{useEnglish}{#2}{}%
+  }
+
+% Set up a question in two alternative languages with answers in each language
+\NewDocumentCommand{\answered}{ +m +m +m +m }
+  {%
+    \dualText{#1\hideText{#2}}{#3\hideText{#4}}%
+  }
+  
+\NewDocumentCommand{\answerBox}{ m }
+  {%
+    \ifbool{showAnswers}{\framebox{#1}}{#1}%
   }
 
 \setLanguage{None} %Possible values: None, English, Italian
@@ -97,6 +109,18 @@ $if(language)$
 $else$
 \setLanguage{None}
 $endif$
+
+\ifbool{useEnglish}
+  {
+    \setdefaultlanguage[variant=american]{english}
+  }{
+    \ifbool{useItalian}
+	  {
+         \setdefaultlanguage{italian}
+	  }{
+	     \setdefaultlanguage[variant=american]{english}
+	  }
+  }
 
 $if(mathfont)$
 \setmathfont{$mathfont$}
@@ -163,23 +187,23 @@ $endif$
 }{}
 
 \begin{document}
-	\ifbool{useNone}{
-	  $if(title)$
-	  \maketitle
-	  $endif$
-	}{}
+    \ifbool{useNone}{
+      $if(title)$
+      \maketitle
+      $endif$
+    }{}
 
-	\ifbool{useEnglish}{
-	  $if(titleEnglish)$
-	  \maketitle
-	  $endif$
-	}{}
-	
-	\ifbool{useItalian}{
-	  $if(titleItalian)$
-	  \maketitle
-	  $endif$
-	}{}	
+    \ifbool{useEnglish}{
+      $if(titleEnglish)$
+      \maketitle
+      $endif$
+    }{}
+    
+    \ifbool{useItalian}{
+      $if(titleItalian)$
+      \maketitle
+      $endif$
+    }{} 
 
-	$body$
+    $body$
 \end{document}
