@@ -20,9 +20,18 @@ $endif$
 \usepackage{lmelahnDefaultFonts}
 \usepackage{longtable,booktabs}
 \usepackage{multicol}
-\usepackage[xetex]{color}
+\usepackage[xetex]{xcolor}
 \usepackage[xetex]{graphicx}
 \usepackage{polyglossia}
+
+\definecolor{light-pink}{rgb}{1,0.9,0.9}
+
+\DeclareDocumentCommand{\trueBox}{ +m }{%
+  \fbox{#1}%
+}
+\DeclareDocumentCommand{\falseBox}{ +m }{%
+  \fcolorbox{red}{light-pink}{#1}%
+}
 
 \providebool{useEnglish}
 \providebool{useItalian}
@@ -99,7 +108,7 @@ $endif$
   
 \NewDocumentCommand{\answerBox}{ m }
   {%
-    \ifbool{showAnswers}{\framebox{#1}}{#1}%
+    \ifbool{showAnswers}{\fcolorbox{red}{white}{#1}}{#1}%
   }
 
 \setLanguage{None} %Possible values: None, English, Italian
