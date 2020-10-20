@@ -15,9 +15,7 @@ $endif$
 
 \usepackage{xparse}
 \usepackage{etoolbox}
-%% Temporary workaround, because hyperref is broken--begin
-%\usepackage{hyperref}
-%% Temporary workaround, because hyperref is broken--end
+\usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{lmelahnDefaultFonts}
 \usepackage{longtable,booktabs}
@@ -26,18 +24,16 @@ $endif$
 \usepackage[xetex]{graphicx}
 \usepackage{polyglossia}
 
-%% Temporary workaround, because hyperref is broken--begin
-\providecommand{\hypertarget}[2]{#2}
-\providecommand{\texorpdfstring}[2]{#2}
-%% Temporary workaround, because hyperref is broken--end
 
 % Set tables numbering to follow chapters.
 % E.g., the second table in chapter three will be Table 3.2
 \makeatletter
 \@addtoreset{table}{chapter}
+\@addtoreset{figure}{chapter}
 \makeatother
 
 \renewcommand\thetable{\thechapter.\arabic{table}}
+\renewcommand\thefigure{\thechapter.\arabic{figure}}
 
 
 \definecolor{light-pink}{rgb}{1,0.9,0.9}
